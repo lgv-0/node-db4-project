@@ -19,7 +19,19 @@ server.get("/recipes", (req, res)=>
     {
         console.log(error);
         res.status(500).send("Internal server error");
-    })
+    });
+});
+
+server.get("/recipes/:id/list", (req, res)=>
+{
+    Retrivers.getShoppingList(req.params.id).then((response)=>
+    {
+        res.status(200).send(response);
+    }).catch((error)=>
+    {
+        console.log(error);
+        res.status(500).send("Internal server error");
+    });
 });
 
 server.listen(5000);
